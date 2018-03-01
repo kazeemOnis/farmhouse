@@ -43,7 +43,7 @@ localhost:3000
 
 * **Kazeem Marzouq Andrew Caleb**
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/kazeemOnis/farmhouse/graphs/contributors) who participated in this project.
 
 
 
