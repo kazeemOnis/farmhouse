@@ -8,10 +8,18 @@
     "start": "nodemon app"
   },
   "dependencies": {
+    "bcryptjs": "*",
     "body-parser": "*",
+    "connect-flash": "*",
+    "ejs": "*",
     "express": "*",
+    "express-messages": "^1.0.1",
+    "express-session": "*",
+    "express-validator": "*",
     "mongoose": "*",
-    "nodemon": "*"
+    "nodemon": "*",
+    "passport": "*",
+    "passport-local": "^1.0.0"
   },
   "author": "Marzouq, Andrew, Caleb, Kazeem",
   "license": "ISC"

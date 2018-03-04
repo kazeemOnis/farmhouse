@@ -1,15 +1,29 @@
+/*jshint esversion: 6 */
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var investorSchema = new Schema({
-	name: {
-		type: String
+	firstname: {
+		type: String,
+		required: true
+	},
+	lastname: {
+		type: String,
+		required: true
 	},
 	username: {
-		type: String
+		type: String,
+		unique: true,
+		required: true
+	},
+	email: {
+		type: String,
+		unique: true,
+		required: true
 	},
 	password: {
-		type: String
+		type: String,
+		required: true
 	},
 	image: {
 		type: String
@@ -19,6 +33,7 @@ var investorSchema = new Schema({
 	}
 });
 
-var Investor = mongoose.model('investor',investorSchema);
+var Investor = mongoose.model('Investor',investorSchema);
 module.exports = Investor;
+
 

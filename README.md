@@ -2,21 +2,29 @@
 
 Project Farmhouse, Agri Tech web Application for Codefest Hackathon 
 
-## Getting Started
+## Prerequisites
 
-Download the zip folder or clone the git repository unto your local repository
-
-### Prerequisites
-
-You need to have nodeJS installed and your choice of web browser
+You need to have nodeJS, Git installed and your choice of web browser
 
 ```
 https://nodejs.org/en/download/
 ```
 
-### Installing
+```
+https://git-scm.com/downloads
+```
 
-After you have installed the prerequisites, open the directory where you have the file downloaded and run
+## Getting Started
+
+Download the zip folder or clone the git repository unto your local repository
+
+```
+git clone https://github.com/kazeemOnis/farmhouse.git
+```
+
+#### Installing
+
+After you have installed the prerequisites, open the directory where the application is saved and run
 
 ```
 npm install
@@ -27,11 +35,12 @@ This creates a node modules folder and download the necessary dependencies for t
 ```
 npm start
 ```
-Open your web browser and open the link below to your localhost and port number
+Open your web browser and enter the URL below to your localhost and port number
 
 ```
 localhost:3000
 ```
+
 ## Built With
 
 * NodeJS

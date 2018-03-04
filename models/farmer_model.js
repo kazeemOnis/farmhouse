@@ -13,20 +13,43 @@ var farmSchema = new Schema({
 	},
 	image: {
 		type: String
+	},
+	owner: {
+		type: String
+	},
+	investor: {
+		type: String
 	}
 });
 
 var farmerSchema = new Schema({
-	name: {
-		type: String
+	firstname: {
+		type: String,
+		required: true
+	},
+	lastname: {
+		type: String,
+		required: true
 	},
 	username: {
-		type: String
+		type: String,
+		unique: true,
+		required: true
+	},
+	email: {
+		type: String,
+		required: true
 	},
 	password: {
-		type: String
+		type: String,
+		required: true
 	},
 	image: {
 		type: String
-	}
+	},
+	farm:[farmSchema]
+
 });
+
+var Farmer = mongoose.model('Farmer',farmerSchema);
+module.exports = Farmer;

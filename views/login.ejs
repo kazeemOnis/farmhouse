@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Farmhouse Page</title>
+	<title>Login Page</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -14,22 +14,36 @@
   		</button>
   		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
+				<li class="nav-item">
 					<a href="/" class="nav-link" title="Home">Home</a>
 				</li>
 				<li class="nav-item">
 					<a href="/investor/register" class="nav-link" title="Register">Register</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item active">
 					<a href="/investor/login" class="nav-link" title="Login">Login</a>
 				</li>
 			</ul>
 		</div>
 	</nav>
 	<div class="container">
-		<h1>Farmhouse page</h1>
+		<%- messages('message', locals) %>
+		<h1>Login page</h1>
+		<div class="row">
+			<form method="post">
+				<div class="form-group">
+					<label for="username">Username:</label>
+					<input class="form-control" type="text" name="username" placeholder="Enter Username" required>
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input class="form-control" type="password" name="password" placeholder="Enter Password" required>
+				</div>
+				<button type="submit" class="btn btn-success">Submit</button>
+			</form>
+		</div>
 	</div>
-
+	
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://unpkg.com/popper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
