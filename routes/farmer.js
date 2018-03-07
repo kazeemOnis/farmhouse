@@ -3,11 +3,10 @@ var express = require('express');
 var bcrypt = require('bcryptjs');
 var passport = require('passport');
 var router = express.Router(); //Express router is used to creat the api 
-var Investor = require('../models/investor_model'); //Require the model for creating an investor
-
+var Farmer = require('../models/farmer_model');
 
 router.get('/register',(req,res)=>{
-	res.render('registerI');
+	res.render('registerF');
 });
 
 router.post('/register',(req,res)=>{
@@ -32,26 +31,26 @@ router.post('/register',(req,res)=>{
     	res.render('registerF',{errors:errors});
     }
     else {
-    	var newInvestor = new Investor({
-			firstname: firstname,
+    	var newFarmer = new Farmer({
+    		firstname: firstname,
 			lastname: lastname,
 			username: username,
 			email: email,
 			password: password,
-		});
-		bcrypt.genSalt(10,(err,salt)=>{
-    		bcrypt.hash(newInvestor.password,salt,(err,hash)=>{
+    	});
+    	bcrypt.genSalt(10,(err,salt)=>{
+    		bcrypt.hash(newFarmer.password,salt,(err,hash)=>{
     			if(err){
       				throw err;
       			}
-      			newInvestor.password = hash;
-      			newInvestor.save((err)=>{
+      			newFarmer.password = hash;
+      			newFarmer.save((err)=>{
       				if(err){
       					throw err;
       					return;
       				}else{
       					req.flash('success','You are now registered and can now login');
-      					res.redirect('/investor/login');
+      					res.redirect('/farmer/login');
       				}
       			});
     		});
@@ -60,13 +59,13 @@ router.post('/register',(req,res)=>{
 });
 
 router.get('/login',(req,res)=>{
-	res.render('loginI');
+	res.render('loginF');
 });
 
 router.post('/login',(req,res,next)=>{
 	passport.authenticate('local', {
-    	successRedirect:'/investor/dashboard',
-    	failureRedirect:'/investor/login',
+    	successRedirect:'/farmer/dashboard',
+    	failureRedirect:'/farmer/login',
     	failureFlash: true
   	})(req, res, next);
 });
@@ -74,18 +73,7 @@ router.post('/login',(req,res,next)=>{
 router.get('/logout',(req,res)=>{
 	req.logout();
 	req.flash('You are logged out');
-	res.redirect('/investor/login');
+	res.redirect('/farmer/login');
 });
-
-// Access Control
-function ensureAuthenticated(req, res, next){
-  	if(req.isAuthenticated()){
-    	return next();
-  	}else {
-    	req.flash('danger', 'Please login');
-    	res.redirect('/investor/login');
-  	}
-}
-
 
 module.exports = router;

@@ -5,32 +5,44 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+    <link href="css/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body>
-	<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    		<span class="navbar-toggler-icon"></span>
-  		</button>
-  		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-					<a href="/" class="nav-link" title="Home">Home</a>
-				</li>
-				<li class="nav-item active">
-					<a href="/investor/register" class="nav-link" title="Register">Register</a>
-				</li>
-				<li class="nav-item">
-					<a href="/investor/login" class="nav-link" title="Login">Login</a>
-				</li>
-			</ul>
+	<div class="wrapper row0">
+		<div id="topnav" class="hoc clear">
+			<div class="fl_left">
+				<ul class="nospace inline pushright">
+					<li><i class="fa fa-home"></i><a href="/">Home</a></li>
+					<li><i class="fa fa-sign-in"></i> <a href="/login">Login</a></li>
+					<li><i class="fa fa-user"></i> <a href="/register">Register</a></li>
+				</ul>
+			</div>
 		</div>
-	</nav>
+	</div>
+	<div class="wrapper row1">
+		<header id="header" class="hoc clear">
+			<div id="logo" class="fl_left">
+				<h1><a href="/">Farmhouse</a></h1>
+			</div>
+			<nav id="mainav" class="fl_right">
+				<ul class="clear">
+					<li class="active"><a href="/">Home</a></li>
+					<li><a href="/about">About</a></li>
+					<li><a href="/faq">FAQs</a></li>
+					<li><a href="/farms">Farms</a></li>
+					<li><a href="/contact">Contact</a></li>
+				</ul>
+			</nav>
+		</header>
+	</div>
 	<div class="container">
 		<%- messages('message', locals) %>
 		<h1>Register page</h1>
 		<div class="row">
-			<form method="post" action="/investor/register">
+			<form method="post" action="/farmer/register">
 				<div class="form-group">
 					<label for="firstname">First Name:</label>
 					<input class="form-control" type="text" name="firstname" placeholder="Enter First Name" required>

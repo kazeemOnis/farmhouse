@@ -8,12 +8,12 @@ var passport = require('passport');
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
-var config = require('./config/database');
-require('./config/passport')(passport);
+var dataConfig = require('./config/database');
 var routes = require('./routes/investor');
+var route = require('./routes/farmer');
 var portNo = 3000; //port no to connect to server
 
-mongoose.connect(config.database,(err)=>{
+mongoose.connect(dataConfig.database,(err)=>{
 	if(err){
 		console.log(err);
 	}
@@ -26,6 +26,8 @@ mongoose.connect(config.database,(err)=>{
 app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
+app.use('/investor',express.static('public'));
+app.use('/farmer',express.static('public'));
 
 // initialize body parser middleware 
 app.use(bodyParser.urlencoded({
@@ -65,14 +67,9 @@ app.use(expressValidator({
   	}
 }));
 
-function ensureAuthenticated(req, res, next){
-  	if(req.isAuthenticated()){
-    	return next();
-  	}else {
-    	req.flash('danger', 'Please login');
-    	res.redirect('/investor/login');
-  	}
-}
+//passport config
+require('./config/passportI')(passport);
+//require('./config/passportF')(passport);
 
 // Passport Middleware
 app.use(passport.initialize());
@@ -83,14 +80,55 @@ app.get('*',(req,res,next)=>{
 	next();
 });
 
+function ensureAuthenticated(req, res, next){
+  	if(req.isAuthenticated()){
+    	return next();
+  	}else {
+    	req.flash('danger', 'Please login');
+    	res.redirect('/investor/login');
+  	}
+}
+
+function authenticate(req,res,next){
+	if(req.isAuthenticated()){
+		return next();
+	}else {
+		req.flash('danger','Please login');
+		res.redirect('/farmer/login');
+	}
+}
+
 // initialise routes middleware
 app.use('/investor',routes);
+app.use('/farmer',route);
 
+app.get('/contact',(req,res)=>{
+	res.sendFile(path.join(__dirname+'/public/contact.html'));
+});
 
-app.get('/investor',ensureAuthenticated,(req,res)=>{
+app.get('/faq',(req,res)=>{
+	res.sendFile(path.join(__dirname+'/public/faq.html'));
+});
+
+app.get('/farms',(req,res)=>{
+	res.sendFile(path.join(__dirname+'/public/farm.html'));
+});
+
+app.get('/login',(req,res)=>{
+	res.sendFile(path.join(__dirname+'/public/login.html'));
+});
+
+app.get('/register',(req,res)=>{
+	res.sendFile(path.join(__dirname+'/public/register.html'));
+});
+
+app.get('/investor/dashboard',ensureAuthenticated,(req,res)=>{
 	res.sendFile(path.join(__dirname + '/public/investor.html'));
 });
 
+app.get('/farmer/dashboard',authenticate,(req,res)=>{
+	res.sendFile(path.join(__dirname +'/public/farmer.html'));
+});
 
 //listen to portNo and connect to the server
 app.listen(portNo,()=>{
