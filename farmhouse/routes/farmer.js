@@ -20,37 +20,37 @@ router.post('/register',(req,res)=>{
 	req.checkBody('firstname', 'First Name is required').notEmpty();
 	req.checkBody('lastname', 'Last Name is required').notEmpty();
 	req.checkBody('username', 'User Name is required').notEmpty();
-  req.checkBody('email', 'Email is required').notEmpty();
-  req.checkBody('email', 'Email is not valid').isEmail();
-  req.checkBody('password', 'Password is required').notEmpty();
-  req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+  	req.checkBody('email', 'Email is required').notEmpty();
+  	req.checkBody('email', 'Email is not valid').isEmail();
+  	req.checkBody('password', 'Password is required').notEmpty();
+  	req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
 
-  let errors = req.validationErrors();
+  	let errors = req.validationErrors();
 
-  if(errors){
+  	if(errors){
     	res.render('registerF',{errors:errors});
-  }
-  else {
-    var newFarmer = new Farmer({
-    firstname: firstname,
-		lastname: lastname,
-		username: username,
-		email: email,
-		password: password,
-    });
-    bcrypt.genSalt(10,(err,salt)=>{
-    	bcrypt.hash(newFarmer.password,salt,(err,hash)=>{
-    		if(err){
-      			throw err;
-      		}
-      		newFarmer.password = hash;
-      		newFarmer.save((err)=>{
-      			if(err){
+    }
+    else {
+    	var newFarmer = new Farmer({
+    		firstname: firstname,
+			lastname: lastname,
+			username: username,
+			email: email,
+			password: password,
+    	});
+    	bcrypt.genSalt(10,(err,salt)=>{
+    		bcrypt.hash(newFarmer.password,salt,(err,hash)=>{
+    			if(err){
       				throw err;
-      				return;
-      			}else{
-      				req.flash('success','You are now registered and can now login');
-      				res.redirect('/farmer/login');
+      			}
+      			newFarmer.password = hash;
+      			newFarmer.save((err)=>{
+      				if(err){
+      					throw err;
+      					return;
+      				}else{
+      					req.flash('success','You are now registered and can now login');
+      					res.redirect('/farmer/login');
       				}
       			});
     		});

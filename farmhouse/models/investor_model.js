@@ -1,7 +1,8 @@
+/*jshint esversion: 6 */
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var farmerSchema = new Schema({
+var investorSchema = new Schema({
 	firstname: {
 		type: String,
 		required: true
@@ -17,6 +18,7 @@ var farmerSchema = new Schema({
 	},
 	email: {
 		type: String,
+		unique: true,
 		required: true
 	},
 	password: {
@@ -25,8 +27,13 @@ var farmerSchema = new Schema({
 	},
 	image: {
 		type: String
+	},
+	farm: {
+		type: String
 	}
 });
 
-var Farmer = mongoose.model('Farmer',farmerSchema);
-module.exports = Farmer;
+var Investor = mongoose.model('Investor',investorSchema);
+module.exports = Investor;
+
+
