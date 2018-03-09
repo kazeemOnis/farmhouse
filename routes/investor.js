@@ -21,42 +21,42 @@ router.post('/register',(req,res)=>{
 	req.checkBody('firstname', 'First Name is required').notEmpty();
 	req.checkBody('lastname', 'Last Name is required').notEmpty();
 	req.checkBody('username', 'User Name is required').notEmpty();
-  	req.checkBody('email', 'Email is required').notEmpty();
-  	req.checkBody('email', 'Email is not valid').isEmail();
-  	req.checkBody('password', 'Password is required').notEmpty();
-  	req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+	req.checkBody('email', 'Email is required').notEmpty();
+	req.checkBody('email', 'Email is not valid').isEmail();
+	req.checkBody('password', 'Password is required').notEmpty();
+	req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
 
-  	let errors = req.validationErrors();
+	let errors = req.validationErrors();
 
-  	if(errors){
-    	res.render('registerF',{errors:errors});
-    }
-    else {
-    	var newInvestor = new Investor({
-			firstname: firstname,
-			lastname: lastname,
-			username: username,
-			email: email,
-			password: password,
-		});
-		bcrypt.genSalt(10,(err,salt)=>{
-    		bcrypt.hash(newInvestor.password,salt,(err,hash)=>{
-    			if(err){
-      				throw err;
-      			}
-      			newInvestor.password = hash;
-      			newInvestor.save((err)=>{
-      				if(err){
-      					throw err;
-      					return;
-      				}else{
-      					req.flash('success','You are now registered and can now login');
-      					res.redirect('/investor/login');
-      				}
-      			});
-    		});
+	if(errors){
+  	res.render('registerF',{errors:errors});
+  }
+  else {
+  	var newInvestor = new Investor({
+		firstname: firstname,
+		lastname: lastname,
+		username: username,
+		email: email,
+		password: password,
+	});
+	bcrypt.genSalt(10,(err,salt)=>{
+  		bcrypt.hash(newInvestor.password,salt,(err,hash)=>{
+  			if(err){
+    				throw err;
+    			}
+    			newInvestor.password = hash;
+    			newInvestor.save((err)=>{
+    				if(err){
+    					throw err;
+    					return;
+    				}else{
+    					req.flash('success','You are now registered and can now login');
+    					res.redirect('/investor/login');
+    				}
+    			});
   		});
-    }
+		});
+  }
 });
 
 router.get('/login',(req,res)=>{

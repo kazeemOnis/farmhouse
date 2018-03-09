@@ -109,8 +109,8 @@ app.get('/contact',(req,res)=>{
 	res.sendFile(path.join(__dirname+'/public/contact.html'));
 });
 
-app.get('/faq',(req,res)=>{
-	res.sendFile(path.join(__dirname+'/public/faq.html'));
+app.get('/about',(req,res)=>{
+	res.sendFile(path.join(__dirname+'/public/about.html'));
 });
 
 app.get('/farms',(req,res)=>{
