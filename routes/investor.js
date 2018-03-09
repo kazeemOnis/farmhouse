@@ -4,7 +4,31 @@ var bcrypt = require('bcryptjs');
 var passport = require('passport');
 var router = express.Router(); //Express router is used to creat the api 
 var Investor = require('../models/investor_model'); //Require the model for creating an investor
+var Farm = require('../models/farm_model');
 
+router.get('/farmowned/:investor',ensureAuthenticated,(req,res)=>{
+  Farm.find({'investor':req.params.investor}).then((farm)=>{
+    res.send(farm);
+  });
+});
+
+router.get('/profile/:investor',ensureAuthenticated,(req,res)=>{
+  Investor.find({'username':req.params.investor}).then((investor)=>{
+    res.send (investor);
+  });
+});
+
+router.get('/findfarms',ensureAuthenticated,(req,res)=>{
+  Farm.find().then((farm)=>{
+    res.send(farm);
+  });
+});
+
+router.post('/updateprofile/:investor',(req,res)=>{
+  Investor.findOneAndUpdate({'username':req.params.investor},req.body).then((investor)=>{
+    res.send(investor);
+  });
+});
 
 router.get('/register',(req,res)=>{
 	res.render('registerI');
@@ -71,8 +95,8 @@ router.get('/login',(req,res)=>{
   	})(req, res, next);
 });*/
 
-router.post('/login', function(req, res, next) {
-  passport.authenticate('local', function(err, investor, info) {
+router.post('/login',(req,res,next)=>{
+  passport.authenticate('local',(err, investor, info)=>{
     if(err){ 
       return next(err); 
     }
