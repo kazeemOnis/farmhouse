@@ -63,12 +63,27 @@ router.get('/login',(req,res)=>{
 	res.render('loginI');
 });
 
-router.post('/login',(req,res,next)=>{
+/*router.post('/login',(req,res,next)=>{
 	passport.authenticate('local', {
     	successRedirect:'/investor/dashboard',
     	failureRedirect:'/investor/login',
     	failureFlash: true
   	})(req, res, next);
+});*/
+
+router.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, investor, info) {
+    if(err){ 
+      return next(err); 
+    }
+    if(!investor){ 
+      return res.redirect('/investor/login'); 
+    }
+    req.logIn(investor, function(err){
+      if (err) { return next(err); }
+      return res.redirect('/investor/' + investor.username);
+    });
+  })(req, res, next);
 });
 
 router.get('/logout',(req,res)=>{

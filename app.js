@@ -125,7 +125,7 @@ app.get('/register',(req,res)=>{
 	res.sendFile(path.join(__dirname+'/public/register.html'));
 });
 
-app.get('/investor/dashboard',ensureAuthenticated,(req,res)=>{
+app.get('/investor/:username',ensureAuthenticated,(req,res)=>{
 	res.sendFile(path.join(__dirname + '/public/investor.html'));
 });
 
