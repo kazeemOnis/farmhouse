@@ -43,7 +43,6 @@ $(document).ready(function(){
 				farmId.append(li);
 			}
 			for(var farm in farms){
-				console.log(farms[farm]);
 				displayFarm(farms[farm]);
 			}
 		}
