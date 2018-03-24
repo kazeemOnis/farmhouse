@@ -30,6 +30,10 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use('/investor',express.static('public'));
 app.use('/farmer',express.static('public'));
+app.use('/investor/invest',express.static('public'));
+app.use('/farmer/create',express.static('public'));
+
+
 
 // initialize body parser middleware 
 app.use(bodyParser.urlencoded({
@@ -105,10 +109,6 @@ app.use('/investor',routes);
 app.use('/farmer',route);
 app.use('/farm',farmRoute);
 
-app.get('/contact',(req,res)=>{
-	res.sendFile(path.join(__dirname+'/public/contact.html'));
-});
-
 app.get('/about',(req,res)=>{
 	res.sendFile(path.join(__dirname+'/public/about.html'));
 });
@@ -129,8 +129,16 @@ app.get('/investor/:username',ensureAuthenticated,(req,res)=>{
 	res.sendFile(path.join(__dirname + '/public/investor.html'));
 });
 
-app.get('/farmer/dashboard',authenticate,(req,res)=>{
+app.get('/investor/invest/:username',ensureAuthenticated,(req,res)=>{
+	res.sendFile(path.join(__dirname + '/public/invest.html'));
+});
+
+app.get('/farmer/:username',authenticate,(req,res)=>{
 	res.sendFile(path.join(__dirname +'/public/farmer.html'));
+});
+
+app.get('/farmer/create/:username',authenticate,(req,res)=>{
+	res.sendFile(path.join(__dirname +'/public/create.html'));
 });
 
 app.post('/contact',(req,res)=>{

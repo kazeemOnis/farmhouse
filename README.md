@@ -1,7 +1,6 @@
 # Farmhouse
 
-Project Farmhouse, Agri Tech web Application for Codefest Hackathon 
-
+Project Farmhouse, Agri Tech web Application 
 ## Prerequisites
 
 You need to have nodeJS, Git installed and your choice of web browser
@@ -50,7 +49,7 @@ localhost:3000
 
 ## Authors
 
-* **Kazeem Marzouq Andrew Caleb**
+* **Kazeem Onisarotu**
 
 See also the list of [contributors](https://github.com/kazeemOnis/farmhouse/graphs/contributors) who participated in this project.
 

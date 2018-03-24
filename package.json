@@ -20,8 +20,9 @@
     "nodemailer": "*",
     "nodemon": "*",
     "passport": "*",
+    "passport-facebook": "*",
     "passport-local": "*"
   },
-  "author": "Marzouq, Andrew, Caleb, Kazeem",
+  "author": "Kazeem Onisarotu",
   "license": "ISC"
 }

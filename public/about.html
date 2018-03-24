@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no,maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
     <link href="css/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
@@ -31,9 +32,9 @@
 					<li class="active"><a href="/">Home</a></li>
 					<li><a href="/about">About</a></li>
 					<li><a href="/farms">Farms</a></li>
-					<li><a href="/contact">Contact</a></li>
 				</ul>
 			</nav>
+			<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 		</header>
 	</div>
 
@@ -47,6 +48,27 @@
        		<p>We will give the investors’ ability to access their data i.e. Farms invested in and corresponding records.</p> 
        		<p>Farm managers will have access to farm records they put into our platform. We are also considering farm security via our platform. Most farmers are not IT literates so managers from our end help put them through remotely and also manage their records</p>
    		</div>
+	</div>
+
+	<div class="container">
+		<p>Contact Us</p>
+		<div class="row col-12">
+			<form method="post" action="/contact">
+		        <div class="form-group">
+		            <label for="name">Name:</label>
+		            <input type="text" class="form-control" name="name" placeholder="Enter Your Name" required>
+		        </div>
+		        <div class="form-group">
+		            <label for="email">Email:</label>
+		            <input type="email" class="form-control" name="email" placeholder="Enter Your Email" required>
+		        </div>
+		        <div class="form-group">
+		            <label for="feedback">Feedback:</label>
+		            <textarea class="form-control" name="feedback" placeholder="Enter Feedback Here" required rows="5"></textarea><br>
+		            <input type="submit" class="form-control" name="sumbit" value="Submit">
+		        </div>
+	        </form>
+		</div>
 	</div>
 
 	<div class="wrapper bgded overlay coloured" style="background-image:url('/img/backgrounds/farm01.jpg');">
@@ -71,8 +93,10 @@
 	
 	
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<!--<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
 	<script src="https://unpkg.com/popper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="js/skel.min.js"></script>
+  	<script src="js/util.js"></script>
+  	<script src="js/main.js"></script>
 </body>
 </html>
